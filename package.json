@@ -1,0 +1,26 @@
+{
+  "name": "wotb_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shadab Saifi <shadabsaifi03@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "cloudinary": "^1.11.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "md5": "^2.2.1",
+    "mongoose": "^5.3.8",
+    "mongoose-paginate": "^5.0.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.5",
+    "randomstring": "^1.1.5",
+    "twilio": "^3.23.2",
+    "var": "^0.3.2"
+  }
+}
