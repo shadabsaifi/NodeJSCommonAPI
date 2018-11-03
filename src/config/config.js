@@ -7,6 +7,10 @@ module.exports  =   {
         auth_token: "0f53e378507e1543cd5e2ddfcf5389a1",
         number:"(855) 572-8559"
     },
+    nodemailer:{
+        pass: "sxd328shubham",
+        user: "nj7870@gmail.com"
+    },
     cloud:{
         cloud_name:"dvflctxao",
         api_key:"919719749694857",

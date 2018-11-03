@@ -17,6 +17,7 @@ module.exports =  {
   PASSWORD_SUCCESSFULLY_CHANGE:"You have successfully change password.",
   SECURE_KEY:"Invalid secure key.",
   IMAGE_UPLOAD_ERROR:"Error while uploading image.",
-  SUCCESS:"Success."
+  SUCCESS:"Success.",
+  PROFILE_SUCCESSFULLY_UPDATE:"Profile successfully update."
 
 }

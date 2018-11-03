@@ -6,5 +6,6 @@ module.exports = {
     forgotPassword:['countryCode', 'phone'],
     resendOTP:['userId'],
     resetPassword:['password', 'userId', 'secureKey'],
-    getUserDetail:['userId']
+    getUserDetail:['userId'],
+    editUserProfile:['userId']
 }

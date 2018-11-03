@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt-nodejs');
 var constant = require('./constant');
 var config = require('../config/config');
+const nodemailer = require('nodemailer')
+let transporter;
 const client = require('twilio')(config.twilio.sid, config.twilio.auth_token);
 const _ = require('lodash');
 var cloudinary = require('cloudinary');
@@ -72,6 +74,31 @@ let sendOTP = (verification_code, countryCode, sendTo)=>{
     });
 }
 
+let sendEmail = (email, subject, message, otp, cc, bcc, callback) => {
+    transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: config.nodemailer
+    });
+    let messageObj = {
+        from: 'Noreply<'+config.nodemailer.user+'>',
+        to: email,
+        subject: subject,
+        text: message,//"A sentence just to check the nodemailer",
+        html: "Your One Time Passsword is   " +otp+"  please enter this otp to reset your password",//"Click on this link to <a href=" + link + ">reset Password</a>",
+        cc:cc,
+        bcc:bcc
+    }
+    transporter.sendMail(messageObj, (err, info) => {
+        if (err) {
+            console.log("Error occured", err)
+            callback(null);
+        } else {
+            console.log("Mail sent")
+            callback("Mail sent.")
+        }
+    })
+}
+
 let imageUploadToCoudinary = (base64, cb)=>{
     if(base64){
         cloudinary.uploader.upload(base64, (result)=>{ 
@@ -92,5 +119,7 @@ module.exports = {
     createHash,
     compareHash,
     sendOTP,
-    imageUploadToCoudinary
+    sendEmail,
+    imageUploadToCoudinary,
+    
 }

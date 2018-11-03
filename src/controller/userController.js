@@ -254,6 +254,41 @@ let getUserDetail = (req, res)=>{
 }
 
 
+let editUserProfile = (req, res)=>{
+    let { userId, image, fullName } = req.body;
+    let given = { userId };
+    common.checkKeyExist(given, fields.editUserProfile)
+    .then(result=>{
+        if(result.length)
+            return common.response(res, code.KEY_MISSING, result[0]);
+        else{
+            common.imageUploadToCoudinary(image, (err, url)=>{
+                if(err)
+                    return common.response(res, code.INTERNAL_SERVER_ERROR, message.IMAGE_UPLOAD_ERROR,err);
+                else{
+                    if(url)
+                        req.body.image = url;
+                    else
+                        delete req.body['image'];
+                    User.findByIdAndUpdate(userId, req.body)
+                    .then(user=>{
+                        if(user)
+                            return common.response(res, code.EVERYTHING_IS_OK, message.PROFILE_SUCCESSFULLY_UPDATE);
+                        else
+                            return common.response(res, code.NOT_FOUND, message.USER_NOT_EXITS);
+                    }, err=>{
+                        return common.response(res, code.INTERNAL_SERVER_ERROR, message.INTERNAL_SERVER_ERROR,err)     
+                    })      
+                }
+            })
+        }
+    }, err=>{
+        return common.response(res, code.INTERNAL_SERVER_ERROR, message.INTERNAL_SERVER_ERROR)     
+    })
+    .catch(err=> { return common.response(res, code.INTERNAL_SERVER_ERROR, message.INTERNAL_SERVER_ERROR, err)})
+}
+
+
 module.exports = {
     
     signup,
@@ -262,5 +297,6 @@ module.exports = {
     forgotPassword,
     resendOTP,
     resetPassword,
-    getUserDetail
+    getUserDetail,
+    editUserProfile
 }
