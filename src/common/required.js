@@ -7,5 +7,8 @@ module.exports = {
     resendOTP:['userId'],
     resetPassword:['password', 'userId', 'secureKey'],
     getUserDetail:['userId'],
-    editUserProfile:['userId']
+    editUserProfile:['userId'],
+    updateStaticContent:['staticId', 'staticType', 'data'],
+    getStaticContent:['staticType'],
+    deleteStaticContent:['staticId', 'staticType']
 }

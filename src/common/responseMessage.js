@@ -18,6 +18,9 @@ module.exports =  {
   SECURE_KEY:"Invalid secure key.",
   IMAGE_UPLOAD_ERROR:"Error while uploading image.",
   SUCCESS:"Success.",
-  PROFILE_SUCCESSFULLY_UPDATE:"Profile successfully update."
+  PROFILE_SUCCESSFULLY_UPDATE:"Profile successfully update.",
+  CONTENT_SUUCCESSFULLY_DELETED:"Content successfully deleted.",
+  CONTENT_NOT_FOUND:"Conten not found.",
+  CONTENT_SUCCESSFULLY_UPDATED:"Content successfully updated."
 
 }
