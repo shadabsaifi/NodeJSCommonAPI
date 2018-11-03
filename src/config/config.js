@@ -15,5 +15,9 @@ module.exports  =   {
         cloud_name:"dvflctxao",
         api_key:"919719749694857",
         api_secret:"sNEdqOvT0Dpo8PSsJsctRrLCJxg"
+    },
+    googleLetLong:{
+        provider: 'google',
+        apiKey: 'AIzaSyB959XY2RqlTkZNYuNRp1EU_YiA3KjS71Q'
     }
 }

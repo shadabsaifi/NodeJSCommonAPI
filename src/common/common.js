@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt-nodejs');
 var constant = require('./constant');
 var config = require('../config/config');
+var NodeGeocoder = require('node-geocoder');
 const nodemailer = require('nodemailer')
 let transporter;
 const client = require('twilio')(config.twilio.sid, config.twilio.auth_token);
@@ -112,6 +113,30 @@ let imageUploadToCoudinary = (base64, cb)=>{
         cb(null, "");
 }
 
+let uploadMultipleImages = (imagesB64, callback) => {
+    let a = [];
+    async.eachSeries(imagesB64, (item, callbackNextIteratn) => {
+        module.exports.imageUploadToCloudinary(item, (url) => {
+            a[a.length] = url;
+            callbackNextIteratn();
+        })
+    }, (err) => {
+        callback(a);
+        console.log("Done with async loop")
+    })
+}
+
+let getLatLong = (place, callback) => {
+    let fn,temp;
+    var geocoder = NodeGeocoder(config.googleLetLong);
+    geocoder.geocode(place, function(err, result) {
+        if (result) {
+            callback(result[0].latitude, result[0].longitude)
+        }
+    });
+   
+}
+
 module.exports = {
 
     checkKeyExist,
@@ -121,5 +146,7 @@ module.exports = {
     sendOTP,
     sendEmail,
     imageUploadToCoudinary,
+    uploadMultipleImages,
+    getLatLong
     
 }
